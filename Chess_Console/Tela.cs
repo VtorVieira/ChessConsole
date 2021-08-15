@@ -1,5 +1,6 @@
 ﻿using System;
 using tabuleiro;
+using chess;
 
 namespace Chess_Console
 {
@@ -27,9 +28,17 @@ namespace Chess_Console
             Console.WriteLine("  A B C D E F G H");
         }
 
+        public static PosicaoChess lerPosicaoChess()
+        {
+            string s = Console.ReadLine();
+            char coluna = s[0];
+            int linha = int.Parse(s[1] + "");
+            return new PosicaoChess(coluna, linha);
+        }
+
         public static void imprimirPeca(Peca peca)
         {
-            if(peca.cor == Cor.Branco)
+            if(peca.cor == Cor.Branca)
             {
                 Console.Write(peca);
             }
