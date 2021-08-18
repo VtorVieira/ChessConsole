@@ -2,12 +2,14 @@
 using tabuleiro;
 using chess;
 
-namespace Chess_Console
+namespace Chess_console
 {
     class Tela
     {
+
         public static void imprimirTabuleiro(Tabuleiro tab)
         {
+
             for (int i = 0; i < tab.linhas; i++)
             {
                 Console.Write(8 - i + " ");
@@ -17,22 +19,23 @@ namespace Chess_Console
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("  A B C D E F G H");
+            Console.WriteLine("  a b c d e f g h");
         }
 
-        public static void imprimirTabuleiro(Tabuleiro tab, bool[,] posicoesPossiveis)
+        public static void imprimirTabuleiro(Tabuleiro tab, bool[,] posicoePossiveis)
         {
+
             ConsoleColor fundoOriginal = Console.BackgroundColor;
-            ConsoleColor fundoAlterador = ConsoleColor.Gray;
+            ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
 
             for (int i = 0; i < tab.linhas; i++)
             {
                 Console.Write(8 - i + " ");
                 for (int j = 0; j < tab.colunas; j++)
                 {
-                    if (posicoesPossiveis[i,j])
+                    if (posicoePossiveis[i, j])
                     {
-                        Console.BackgroundColor = fundoAlterador;
+                        Console.BackgroundColor = fundoAlterado;
                     }
                     else
                     {
@@ -43,11 +46,11 @@ namespace Chess_Console
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("  A B C D E F G H");
+            Console.WriteLine("  a b c d e f g h");
             Console.BackgroundColor = fundoOriginal;
         }
 
-        public static PosicaoChess lerPosicaoChess()
+        public static PosicaoChess lerPosicaoXadrez()
         {
             string s = Console.ReadLine();
             char coluna = s[0];
@@ -78,5 +81,6 @@ namespace Chess_Console
                 Console.Write(" ");
             }
         }
+
     }
 }

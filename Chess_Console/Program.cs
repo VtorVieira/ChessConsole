@@ -2,18 +2,20 @@
 using tabuleiro;
 using chess;
 
-namespace Chess_Console
+namespace Chess_console
 {
     class Program
     {
         static void Main(string[] args)
         {
+
             try
             {
                 PartidaDeChess partida = new PartidaDeChess();
 
                 while (!partida.terminada)
                 {
+
                     try
                     {
                         Console.Clear();
@@ -24,7 +26,7 @@ namespace Chess_Console
 
                         Console.WriteLine();
                         Console.Write("Origem: ");
-                        Posicao origem = Tela.lerPosicaoChess().toPosicao();
+                        Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
                         partida.validarPosicaoDeOrigem(origem);
 
                         bool[,] posicoesPossiveis = partida.tab.peca(origem).movimentosPossiveis();
@@ -34,24 +36,24 @@ namespace Chess_Console
 
                         Console.WriteLine();
                         Console.Write("Destino: ");
-                        Posicao destino = Tela.lerPosicaoChess().toPosicao();
+                        Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
                         partida.validarPosicaoDeDestino(origem, destino);
 
-                        partida.executaMotimento(origem, destino);
+                        partida.realizaJogada(origem, destino);
                     }
-                    catch(TabuleiroException e)
+                    catch (TabuleiroException e)
                     {
                         Console.WriteLine(e.Message);
                         Console.ReadLine();
                     }
                 }
 
-
             }
             catch (TabuleiroException e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
             }
+
             Console.ReadLine();
         }
     }

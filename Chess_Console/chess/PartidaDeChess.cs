@@ -5,6 +5,7 @@ namespace chess
 {
     class PartidaDeChess
     {
+
         public Tabuleiro tab { get; private set; }
         public int turno { get; private set; }
         public Cor jogadorAtual { get; private set; }
@@ -19,17 +20,17 @@ namespace chess
             colocarPecas();
         }
 
-        public void executaMotimento(Posicao origem, Posicao destino)
+        public void executaMovimento(Posicao origem, Posicao destino)
         {
             Peca p = tab.retirarPeca(origem);
-            p.incrementarQtdMovimentos();
+            p.incrementarQteMovimentos();
             Peca pecaCapturada = tab.retirarPeca(destino);
             tab.colocarPeca(p, destino);
         }
 
         public void realizaJogada(Posicao origem, Posicao destino)
         {
-            executaMotimento(origem, destino);
+            executaMovimento(origem, destino);
             turno++;
             mudaJogador();
         }
@@ -38,7 +39,7 @@ namespace chess
         {
             if (tab.peca(pos) == null)
             {
-                throw new TabuleiroException("Não existe peça na poscição de origem escolhida");
+                throw new TabuleiroException("Não existe peça na posição de origem escolhida!");
             }
             if (jogadorAtual != tab.peca(pos).cor)
             {
@@ -54,7 +55,7 @@ namespace chess
         {
             if (!tab.peca(origem).podeMoverPara(destino))
             {
-                throw new TabuleiroException("Posição de destino invalida!");
+                throw new TabuleiroException("Posição de destino inválida!");
             }
         }
 
